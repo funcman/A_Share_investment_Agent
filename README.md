@@ -110,7 +110,7 @@ curl -sSL [https://install.python-poetry.org](https://install.python-poetry.org)
 使用 Poetry 安装项目所需的依赖包：
 
 ```bash
-poetry lock --no-update
+poetry lock
 ```
 
 ```bash

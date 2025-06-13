@@ -7,7 +7,12 @@ API状态管理模块
 import threading
 import logging
 from typing import Dict, List, Any, Optional
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 from concurrent.futures import ThreadPoolExecutor, Future
 
 from .models.api_models import RunInfo

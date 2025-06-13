@@ -1,5 +1,10 @@
 from pydantic import BaseModel, Field
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 from typing import Any, Dict, List, Optional
 
 

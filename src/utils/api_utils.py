@@ -17,7 +17,12 @@ import threading  # Used for server stop event
 import time  # Used for server stop event
 import inspect  # Used in log_llm_interaction (decorator mode)
 from typing import Dict, List, Any, Optional, Callable, TypeVar  # Keep needed types
-from datetime import datetime, UTC  # Keep needed datetime objects
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10  # Keep needed datetime objects
 # from contextlib import contextmanager # Unused
 # from concurrent.futures import ThreadPoolExecutor, Future # Unused
 import uvicorn  # Used in start_api_server

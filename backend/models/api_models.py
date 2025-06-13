@@ -6,7 +6,12 @@ API数据模型
 
 from pydantic import BaseModel, Field
 from typing import Dict, List, Any, Optional, TypeVar, Generic
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 
 # 类型定义
 T = TypeVar('T')

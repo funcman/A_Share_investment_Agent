@@ -7,7 +7,12 @@
 from fastapi import APIRouter
 import uuid
 import logging
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 from typing import Dict
 
 from ..models.api_models import (

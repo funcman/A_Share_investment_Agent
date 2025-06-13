@@ -6,7 +6,12 @@
 
 import logging
 from typing import Dict, Any
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 
 from ..models.api_models import StockAnalysisRequest
 from ..utils.context_managers import workflow_run

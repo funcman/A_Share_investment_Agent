@@ -4,7 +4,12 @@ import sys
 import logging
 from contextvars import ContextVar
 from typing import Any, Callable, List, Optional, Dict, Tuple
-from datetime import datetime, UTC
+from datetime import datetime
+try:
+    from datetime import UTC  # Works in Python ≥ 3.11
+except ImportError:
+    from datetime import timezone
+    UTC = timezone.utc  # Fallback for Python ≤ 3.10
 
 from backend.schemas import LLMInteractionLog, AgentExecutionLog
 from backend.storage.base import BaseLogStorage
